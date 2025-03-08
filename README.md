@@ -16,7 +16,7 @@ public class SkyboxRotate : MonoBehaviour
     #region --- Unity Methods ---
     private void LateUpdate()
     {
-        _rotation = (Time.time * rotateSpeed) % 360;
+        _rotation = (Time.time * rotateSpeed) % 360; // Smooth change rotate from 0 to 360 degree
         skyboxMaterial.SetFloat("_RotationX", _rotation);
         skyboxMaterial.SetFloat("_RotationY", _rotation);
         skyboxMaterial.SetFloat("_RotationZ", _rotation);
