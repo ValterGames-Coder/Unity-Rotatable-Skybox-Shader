@@ -1,4 +1,4 @@
-﻿Shader "Skybox/RotatableSkybox"
+Shader "Skybox/RotatableSkybox"
 {
     Properties
     {
@@ -90,19 +90,20 @@
                 
                 if (maxCoord == absRotatedPos.x)
                 {
+                    
                     float2 uv = float2(rotatedPos.z, rotatedPos.y) / absRotatedPos.x;
                     uv = uv * 0.5 + 0.5;
-                    return (rotatedPos.x > 0) ? tex2D(_LeftTex, uv) : tex2D(_RightTex, uv);
+                    return (rotatedPos.x > 0) ? tex2D(_LeftTex, float2(1.0 - uv.x, uv.y)) : tex2D(_RightTex, uv);
                 }
                 if (maxCoord == absRotatedPos.y)
                 {
                     float2 uv = float2(rotatedPos.x, rotatedPos.z) / absRotatedPos.y;
                     uv = uv * 0.5 + 0.5;
-                    return (rotatedPos.y > 0) ? tex2D(_UpTex, uv) : tex2D(_DownTex, uv);
+                    return (rotatedPos.y > 0) ? tex2D(_UpTex, float2(uv.x, 1.0 - uv.y)) : tex2D(_DownTex, uv);
                 }
                 float2 uv = float2(rotatedPos.x, rotatedPos.y) / absRotatedPos.z;
                 uv = uv * 0.5 + 0.5;
-                return (rotatedPos.z > 0) ? tex2D(_FrontTex, uv) : tex2D(_BackTex, uv);
+                return (rotatedPos.z > 0) ? tex2D(_FrontTex, uv) : tex2D(_BackTex, float2(1.0 - uv.x, uv.y));
             }
             ENDCG
         }
