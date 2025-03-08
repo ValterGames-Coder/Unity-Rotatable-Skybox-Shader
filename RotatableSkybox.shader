@@ -92,7 +92,7 @@
                 {
                     float2 uv = float2(rotatedPos.z, rotatedPos.y) / absRotatedPos.x;
                     uv = uv * 0.5 + 0.5;
-                    return (rotatedPos.x > 0) ? tex2D(_RightTex, uv) : tex2D(_LeftTex, uv);
+                    return (rotatedPos.x > 0) ? tex2D(_LeftTex, uv) : tex2D(_RightTex, uv);
                 }
                 if (maxCoord == absRotatedPos.y)
                 {
